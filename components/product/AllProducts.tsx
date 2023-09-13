@@ -66,12 +66,12 @@ export default function AllProducts() {
     <Box>
         <Flex justifyContent={'space-between'} my={'36px'} flexWrap={'wrap'}>
             <Text fontSize={'2xl'} fontWeight={'bold'}>All Products</Text>
-            <InputGroup maxWidth={'400px'} backgroundColor={'#edececc9'} height={'20px'}>
+            <InputGroup maxWidth={'400px'} backgroundColor={'#edececc9'} height={'20px'} flexWrap={'wrap'}>
             <InputLeftElement pointerEvents={'none'} p={'4px'}>
                 <Text>Icon</Text>
             </InputLeftElement>
             <Input placeholder='Enter your pincode'/>
-            <InputRightElement width={'max-content'}>
+            <InputRightElement flexWrap={'wrap'} width={'auto'}>
                 <Button variant={'ghost'} colorScheme='teal'>Check availability</Button>
             </InputRightElement>
             </InputGroup>

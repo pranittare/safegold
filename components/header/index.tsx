@@ -9,7 +9,7 @@ import Image from 'next/image'
 export default function Header() {
   const [active, setActive] = useState<Boolean | Number>(false)
   return (
-    <Flex justifyContent={'space-around'} alignItems={'center'} height={'70px'}>
+    <Flex justifyContent={'space-evenly'} alignItems={'center'} height={'70px'}>
       <Image src={logo} alt='logo'/>
       <Show above='501px'>
       <Flex gap={'24px'} alignItems={'center'} flexWrap={'wrap'} justifyContent={'space-around'}>

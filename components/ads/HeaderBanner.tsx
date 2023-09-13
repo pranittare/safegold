@@ -21,7 +21,7 @@ export default function HeaderBanner() {
         <Flex direction={'column'} gap={'36px'}>
         <Text fontSize={'4xl'} fontWeight={'bold'} maxWidth={'500px'}>Get 24k Gold delivered to your doorstep</Text>
         {/* Inner Add Description */}
-        <Flex gap={'24px'} alignItems={'center'}>
+        <Flex gap={'24px'} alignItems={'center'} flexWrap={'wrap'}>
             {details.map(item => {
                 return <Box key={item.description} textAlign={'center'}>
                     <Image src={item.icon} alt='icon' height={'50'} width={'50'} 
