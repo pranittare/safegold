@@ -26,7 +26,7 @@ const Login = ({login}:LoginProps) => {
         setTimer(120)
         onClose()
     }
-    
+
     function onCaptchVerify() {
         if (!(window as any).recaptchaVerifier) {
           (window as any).recaptchaVerifier = new RecaptchaVerifier(
@@ -53,6 +53,7 @@ const Login = ({login}:LoginProps) => {
                 })
         }, 1000);
     }
+    var load = true
     const onSignup =() => {
         setLoading(true);
         onCaptchVerify();
@@ -60,14 +61,15 @@ const Login = ({login}:LoginProps) => {
         const appVerifier = (window as any).recaptchaVerifier;
     
         const formatPh = "+91" + phoneNumber;
-    
         signInWithPhoneNumber(auth, formatPh, appVerifier)
           .then((confirmationResult) => {
             (window as any).confirmationResult = confirmationResult;
+            if (load) {
+              optTimer()
+            }
+            load = false
             setLoading(false);
             setShowOTP(true);
-            optTimer()
-          //   toast.success("OTP sended successfully!");
           })
           .catch((error) => {
             console.log(error);
@@ -79,9 +81,10 @@ const Login = ({login}:LoginProps) => {
         (window as any).confirmationResult
           .confirm(otp)
           .then(async (res:any) => {
-            console.log(res);
             setUser(res.user);
             setLoading(false);
+            handleClose()
+
           })
           .catch((err:any) => {
             console.log(err);
@@ -111,8 +114,10 @@ const Login = ({login}:LoginProps) => {
                                 </Stack>
                             </RadioGroup>}
 
-                           {showOTP ? <><Input my={'32px'} variant='flushed' placeholder="Enter One Time Password (OTP)" value={otp}  onChange={(e: ChangeEvent<HTMLInputElement>) => setOtp(e.target.value)}/>
+                           {showOTP ? <>
+                           <Input my={'32px'} variant='flushed' placeholder="Enter One Time Password (OTP)" value={otp}  onChange={(e: ChangeEvent<HTMLInputElement>) => setOtp(e.target.value)}/>
                            <Text fontSize={'small'} color={'grey'}>{`Didn't receive OTP? Resend in ${timer}`}</Text>
+                           {/* <Button onClick={optTimer}>Check</Button> */}
                             </>: <Input variant='flushed' placeholder="Enter Mobile Number" value={phoneNumber}  onChange={(e: ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value)} />}
                             <button role="button" id="recaptcha-container" type="button"/>
 

@@ -1,17 +1,21 @@
 "use client"
-import { Box, Button, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, Show } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, Show } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { header } from '@/constants/header'
 import Link from 'next/link'
 import logo from '../../assets/safegold-logo.svg'
 import Image from 'next/image'
 import Login from '../auth/login'
+import {useAuth} from '../../app/AuthProvider'
+import { signOut } from 'firebase/auth'
+import { auth } from '@/app/config'
 
 export default function Header() {
   const [active, setActive] = useState<Boolean | Number>(false)
+  const {user}= useAuth()
   return (
     <Flex justifyContent={'space-evenly'} alignItems={'center'} height={'70px'}>
-      <Image src={logo} alt='logo'/>
+      <Link href={'/'}><Image src={logo} alt='logo'/></Link>
       <Show above='501px'>
       <Flex gap={'24px'} alignItems={'center'} flexWrap={'wrap'} justifyContent={'space-around'}>
         {header.map((item, index: Number) => {
@@ -22,8 +26,20 @@ export default function Header() {
             color={item.name === 'Lease' ? 'goldenrod' : 'black'}
           ><Link href={item.link}>{item.name}</Link></Box>
         })}
-        <Login login={true}/>
+       {user ? <Flex alignItems={'center'} gap={'8px'}>
+        <Avatar size={'sm'} bg={'goldenrod'}/>
+        <Menu>
+          <MenuButton>Test </MenuButton>
+          <MenuList>
+            <MenuItem onClick={()=> signOut(auth)}>Singout</MenuItem>
+          </MenuList>
+        </Menu>
+       </Flex>
+       :
+        <><Login login={true}/>
         <Login login={false}/>
+        </>
+        }
         {/* <Button colorScheme='teal' >
           Singup
         </Button> */}
