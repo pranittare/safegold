@@ -22,7 +22,4 @@ export const header:headerLink[] = [
     {
         name: 'About', link: "/about"
     },
-    {
-        name: 'Login', link: "/login"
-    },
 ]

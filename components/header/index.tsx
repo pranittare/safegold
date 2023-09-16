@@ -5,6 +5,7 @@ import { header } from '@/constants/header'
 import Link from 'next/link'
 import logo from '../../assets/safegold-logo.svg'
 import Image from 'next/image'
+import Login from '../auth/login'
 
 export default function Header() {
   const [active, setActive] = useState<Boolean | Number>(false)
@@ -21,9 +22,11 @@ export default function Header() {
             color={item.name === 'Lease' ? 'goldenrod' : 'black'}
           ><Link href={item.link}>{item.name}</Link></Box>
         })}
-        <Button colorScheme='teal' >
+        <Login login={true}/>
+        <Login login={false}/>
+        {/* <Button colorScheme='teal' >
           Singup
-        </Button>
+        </Button> */}
       </Flex>
       </Show>
       <Show below='500px'>

@@ -1,9 +1,10 @@
-import { Box, Button, Flex, Input, InputGroup, InputLeftElement, InputRightElement, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import React from 'react'
-import SingleProduct from './SingleProduct'
+import ProductCard from './ProductCard'
 import Guarantee from '../ads/guarantee'
+import Pincode from '../pincode'
 
-type SingleProductProps = {
+interface SingleProductProps {
     offer: string, 
     coinIcon: string,
     name: string,
@@ -66,22 +67,14 @@ export default function AllProducts() {
     <Box>
         <Flex justifyContent={'space-between'} my={'36px'} flexWrap={'wrap'}>
             <Text fontSize={'2xl'} fontWeight={'bold'}>All Products</Text>
-            <InputGroup maxWidth={'400px'} backgroundColor={'#edececc9'} height={'20px'} flexWrap={'wrap'}>
-            <InputLeftElement pointerEvents={'none'} p={'4px'}>
-                <Text>Icon</Text>
-            </InputLeftElement>
-            <Input placeholder='Enter your pincode'/>
-            <InputRightElement flexWrap={'wrap'} width={'auto'}>
-                <Button variant={'ghost'} colorScheme='teal'>Check availability</Button>
-            </InputRightElement>
-            </InputGroup>
+            <Pincode />
         </Flex>
         <Flex justifyContent={'space-between'} flexWrap={'wrap'}>
             {dummy.map((item, index:number) => {
                 if (index === 3) {
-                  return  <Guarantee key={'break'}/>
+                  return  <Guarantee key={'break'} smallSize={false}/>
                 }
-                return <SingleProduct name={item.name} offer={item.offer} amount={item.amount} coinIcon={item.coinIcon} maxAmount={item.maxAmount} key={item.id}/>
+                return <ProductCard data={item} key={item.id}/>
             })}
         </Flex>
     </Box>
