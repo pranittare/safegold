@@ -47,6 +47,7 @@ export default function Dynamic() {
                     <Description />
                 </Box>
             </Flex>
+            <Guarantee smallSize={false}/>
         </Box>
     )
 }

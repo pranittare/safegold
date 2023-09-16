@@ -36,7 +36,7 @@ export default function Description() {
             return <Tr key={item.name}>
             <Td width={'200px'}>{item.name}</Td>
             <Td>:</Td>
-            <Td>{item.value}</Td>
+            <Td fontWeight={'bold'}>{item.value}</Td>
           </Tr>
            }) }
           </Tbody>
