@@ -9,6 +9,7 @@ type authContextType = {
 
 export type Props = {
     children: ReactNode;
+
 };
 
 const authContextDefaultValues: authContextType = {
@@ -21,7 +22,7 @@ export function useAuth() {
     return useContext(AuthContext);
 }
 
-export function AuthProvider({ children }: Props) {
+export const AuthProvider = ({ children  }: Props) => {
     const [user, setUser] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
@@ -40,7 +41,7 @@ export function AuthProvider({ children }: Props) {
         return () => unsubscribe();
     }, []);
     useEffect(() => {
-        if (!user) {
+        if (!user && !loading) {
             router.push('/')
         }
     },[user, pathname])

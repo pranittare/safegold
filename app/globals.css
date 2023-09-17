@@ -1,11 +1,21 @@
 .color-golden{
     color: goldenrod;
 }
+.backarrow{
+    font-size: large;
+    font-weight: bold;
+    padding-right: 16px;
+}
 .marker::before {
     content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-    color: goldenrod; /* Change the color */
-    font-weight: bold; /* If you want it to be bold */
-    display: inline-block; /* Needed to add space between the bullet and the text */
-    width: 1em; /* Also needed for space (tweak if needed) */
-    margin-left: -1em; /* Also needed for space (tweak if needed) */
-  }
+    color: goldenrod; 
+    font-weight: bold; 
+    display: inline-block; 
+    width: 1em; 
+    margin-left: -1em;
+}
+body{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px;
+}

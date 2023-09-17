@@ -4,12 +4,15 @@ import { detailsProps } from '@/constants/types'
 import certificate from '../../assets/certificate.png'
 import truck from '../../assets/truck.png'
 import priceTag from '../../assets/price-tag.png'
+import goldbars from '../../assets/gold-bars.svg'
+import delivery_truck from '../../assets/delivery-truck.svg'
+
 import Image from 'next/image'
 
 const dummy: detailsProps[] = [
     { description: '24k Guaranteed Quality Certified', icon: 'some icon' },
-    { description: 'Free Insurance on Delivery', icon: 'some icon' },
-    { description: 'Zero negative weight tolarance', icon: 'some icon' },
+    { description: 'Free Insurance on Delivery', icon: delivery_truck },
+    { description: 'Zero negative weight tolarance', icon: goldbars },
     { description: 'Order Tracking & Support', icon: 'some icon' }
 ]
 const dummy2: detailsProps[] = [
@@ -34,10 +37,12 @@ const Guarantee = ({smallSize}:{smallSize:boolean}) => {
             <Text textAlign={'center'} maxWidth={'200px'} fontSize={'3xl'}>Safe Gold Guarantee</Text>
             <Flex justifyContent={'space-between'} flexWrap={'wrap'}>
                 {dummy.map(item => {
-                    return <Box key={item.description} maxWidth={'150px'}>
-                        <Text>{item.icon}</Text>
-                        <Text>{item.description}</Text>
-                    </Box>
+                    return <Flex justifyContent={'center'} direction={'column'} alignItems={'center'} key={item.description} maxWidth={'150px'}>
+                        {item.icon === 'some icon' ? <Text>{item.icon}</Text> :
+                        <Box height={'30px'} width={'30px'}><Image src={item.icon} alt={item.description} height={'30'} width={'30'}/></Box>
+                    }
+                        <Text textAlign={'center'}>{item.description}</Text>
+                    </Flex>
                 })}
             </Flex>
         </Flex>

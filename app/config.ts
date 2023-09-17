@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,8 +15,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-let app:any = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const app:any = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-let auth:any = getAuth()
+const auth:any = getAuth()
 auth.useDeviceLanguage();
-export { app, auth };
+
+const db = getFirestore(app)
+
+const storage = getStorage(app, "gs://safegold-9338a.appspot.com");
+export { app, auth, db, storage };

@@ -9,7 +9,7 @@ export default function Pincode() {
       </InputLeftElement>
       <Input placeholder='Enter your pincode' />
       <InputRightElement flexWrap={'wrap'} width={'auto'}>
-        <Button variant={'ghost'} colorScheme='teal'>Check availability</Button>
+        <Button variant={'ghost'} _hover={{backgroundImage: 'transparent'}} colorScheme='teal'>Check availability</Button>
       </InputRightElement>
     </InputGroup>
   )

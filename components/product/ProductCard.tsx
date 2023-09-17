@@ -1,18 +1,12 @@
 "use client"
 import { Badge, Box, Button, Flex, Text } from '@chakra-ui/react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+import { SingleProductProps } from './AllProducts'
 
-type ProductCardProps = {
-  offer: string, 
-  coinIcon: string,
-  name: string,
-  maxAmount: number,
-  amount: number, 
-  id: number
-}
 interface data {
-    data: ProductCardProps
+    data: SingleProductProps
 }
 
 
@@ -27,7 +21,7 @@ export default function ProductCard({data}: data) {
          <Badge height={'36px'} maxWidth={'fit-content'} p={data.offer ? '8px' : '0px'}>{data.offer}</Badge>
         <Flex direction={'column'} gap={'16px'} padding={'16px'}>
             <Flex direction={'column'} gap={'32px'} justifyContent={'center'} alignItems={'center'} width={'100%'}>
-                <Text>{data.coinIcon}</Text>
+                <Image src={data.coinIcon} alt={data.name} width={'100'} height={'100'}/>
                 <Text fontWeight={'bold'}>{data.name}</Text>
                 <Text color={'teal'} fontWeight={'bold'}>{data.amount}</Text>
                 <Flex justifyContent={'space-between'} width={'180px'}>
